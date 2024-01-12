@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "468487202894",
+    "project_id": "just-chat-wpp2",
+    "storage_bucket": "just-chat-wpp2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468487202894:android:ce6d374a92b6c70b123b1f",
+        "android_client_info": {
+          "package_name": "com.example.just_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEOzp0aSNPi6Ltp8Q9Z_8sADVmed57jhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
