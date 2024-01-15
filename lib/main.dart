@@ -1,17 +1,26 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:just_chat/auth/auth_gate.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:just_chat/services/auth/auth_gate.dart';
 import 'package:just_chat/firebase_options.dart';
-import 'package:just_chat/themes/light_mode.dart';
+import 'package:just_chat/themes/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await dotenv.load(fileName: '.env');
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const MyApp(),
+  ));
+
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const AuthGate(),
-      theme: lightMode,
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }

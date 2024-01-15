@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:just_chat/auth/auth_service.dart';
+import 'package:just_chat/services/auth/auth_service.dart';
 import 'package:just_chat/components/my_button.dart';
 import 'package:just_chat/components/my_textfield.dart';
 

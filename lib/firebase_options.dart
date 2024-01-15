@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -49,20 +50,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAEOzp0aSNPi6Ltp8Q9Z_8sADVmed57jhM',
-    appId: '1:468487202894:android:ce6d374a92b6c70b123b1f',
+  static final FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env["ANDROID_API_KEY"]!,
+    appId: dotenv.env["ANDROID_APP_ID"]!,
     messagingSenderId: '468487202894',
     projectId: 'just-chat-wpp2',
     storageBucket: 'just-chat-wpp2.appspot.com',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD4SswWbYct3lq9C72AeFo70GeEpZpPdjg',
-    appId: '1:468487202894:ios:9b5fd7e8119b0bb9123b1f',
+  static final FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env["IOS_API_KEY"]!,
+    appId: dotenv.env["IOS_APP_ID"]!,
     messagingSenderId: '468487202894',
     projectId: 'just-chat-wpp2',
     storageBucket: 'just-chat-wpp2.appspot.com',
-    iosBundleId: 'com.example.justChat',
+    iosBundleId: 'com.samuelson.justChat',
   );
 }

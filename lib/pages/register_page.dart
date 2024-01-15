@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:just_chat/auth/auth_service.dart';
+import 'package:just_chat/services/auth/auth_service.dart';
 import 'package:just_chat/components/my_button.dart';
 import 'package:just_chat/components/my_textfield.dart';
 
@@ -21,7 +21,7 @@ class RegisterPage extends StatelessWidget {
 
     if (_passwordController.text == _confirmPasswordController.text) {
       try {
-        authService.signInWithEmailPassword(
+        authService.signUpWithEmailPassword(
           _emailController.text,
           _passwordController.text,
         );
@@ -36,6 +36,13 @@ class RegisterPage extends StatelessWidget {
           ),
         );
       }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("As senhas não coincidem"),
+        ),
+      );
     }
   }
 
