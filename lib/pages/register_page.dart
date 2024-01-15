@@ -3,18 +3,27 @@ import 'package:just_chat/services/auth/auth_service.dart';
 import 'package:just_chat/components/my_button.dart';
 import 'package:just_chat/components/my_textfield.dart';
 
-class RegisterPage extends StatelessWidget {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
 
-  RegisterPage({
+  const RegisterPage({
     super.key,
     this.onTap,
   });
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _emailController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  bool isLoading = false;
 
   void register(BuildContext context) {
     final authService = AuthService();
@@ -27,6 +36,7 @@ class RegisterPage extends StatelessWidget {
         );
       } catch (e) {
         if (!context.mounted) return;
+        setState(() => isLoading = false);
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -37,6 +47,7 @@ class RegisterPage extends StatelessWidget {
         );
       }
     } else {
+      setState(() => isLoading = false);
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
@@ -92,12 +103,16 @@ class RegisterPage extends StatelessWidget {
             // login Button
             MyButton(
               text: "Registrar",
-              onTap: () => register(context),
+              isLoading: isLoading,
+              onTap: () {
+                setState(() => isLoading = true);
+                register(context);
+              },
             ),
             const SizedBox(height: 10),
 
             GestureDetector(
-              onTap: onTap,
+              onTap: widget.onTap,
               child: Text(
                 "Voltar",
                 style: TextStyle(
@@ -105,7 +120,9 @@ class RegisterPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            )
+            ),
+
+            const SizedBox(height: 10),
           ],
         ),
       ),
